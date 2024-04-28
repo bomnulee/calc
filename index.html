@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>공학용 계산기</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #calculator {
+            width: 10cm;
+            height: 10cm;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+        input[type="text"], button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        input[type="text"] {
+            grid-column: span 4;
+            text-align: right;
+        }
+        button {
+            cursor: pointer;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <input type="text" id="display" disabled>
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="inputValue('(')">(</button>
+        <button onclick="inputValue(')')">)</button>
+        <button onclick="inputValue('/')">/</button>
+        <button onclick="inputValue('7')">7</button>
+        <button onclick="inputValue('8')">8</button>
+        <button onclick="inputValue('9')">9</button>
+        <button onclick="inputValue('*')">*</button>
+        <button onclick="inputValue('4')">4</button>
+        <button onclick="inputValue('5')">5</button>
+        <button onclick="inputValue('6')">6</button>
+        <button onclick="inputValue('-')">-</button>
+        <button onclick="inputValue('1')">1</button>
+        <button onclick="inputValue('2')">2</button>
+        <button onclick="inputValue('3')">3</button>
+        <button onclick="inputValue('+')">+</button>
+        <button onclick="inputValue('0')">0</button>
+        <button onclick="inputValue('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="inputValue('**')">^</button>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+
+        function inputValue(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
